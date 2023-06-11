@@ -2,43 +2,22 @@
 {
     public interface IRobotCommand
     {
-        void Execute(Robot robot);
         void Run(Robot robot);
     }
 
     public class OffCommand : IRobotCommand
     {
-        public static void Run(Robot robot)
+        public void Run(Robot robot)
         {
             robot.IsPowered = false;
-        }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
         }
     }
 
     public class OnCommand : IRobotCommand
     {
-        public static void Run(Robot robot)
+        public void Run(Robot robot)
         {
             robot.IsPowered = true;
-        }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
         }
     }
 
@@ -51,78 +30,38 @@
                 robot.X--;
             }
         }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class EastCommand : IRobotCommand
     {
-        public static void Run(Robot robot)
+        public void Run(Robot robot)
         {
             if (robot.IsPowered)
             {
                 robot.X++;
             }
         }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class SouthCommand : IRobotCommand
     {
-        public static void Run(Robot robot)
+        public void Run(Robot robot)
         {
             if (robot.IsPowered)
             {
                 robot.Y--;
             }
         }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class NorthCommand : IRobotCommand
     {
-        public static void Run(Robot robot)
+        public void Run(Robot robot)
         {
             if (robot.IsPowered)
             {
                 robot.Y++;
             }
-        }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
         }
     }
 
@@ -145,16 +84,6 @@
                 robot.X += 2;
                 robot.Y += 2;
             }
-        }
-
-        void IRobotCommand.Execute(Robot robot)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRobotCommand.Run(Robot robot)
-        {
-            throw new NotImplementedException();
         }
     }
 }

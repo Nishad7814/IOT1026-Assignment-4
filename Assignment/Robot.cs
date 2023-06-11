@@ -51,46 +51,46 @@ namespace Assignment
         public void Run()
         {
             for (var i = 0; i < _commandsLoaded; ++i)
-    {
-        if (_commands[i] is OnCommand)
-        {
+            {
+                if (_commands[i] is OnCommand)
+                {
                     On();
-        }
-        else if (_commands[i] is OffCommand)
-        {
+                }
+                else if (_commands[i] is OffCommand)
+                {
                     Off();
-        }
-        else if (_commands[i] is NorthCommand)
-        {
+                }
+                else if (_commands[i] is NorthCommand)
+                {
                     MoveNorth();
-        }
-        else if (_commands[i] is SouthCommand)
-        {
+                }
+                else if (_commands[i] is SouthCommand)
+                {
                     MoveSouth();
-        }
-        else if (_commands[i] is EastCommand)
-        {
+                }
+                else if (_commands[i] is EastCommand)
+                {
                     MoveEast();
-        }
-        else if (_commands[i] is WestCommand)
-        {
-            MoveWest();
-        }
+                }
+                else if (_commands[i] is WestCommand)
+                {
+                    MoveWest();
+                }
 
-        Console.WriteLine(this);
-    }
+                Console.WriteLine(this);
+            }
         }
 
         private void On()
-       {
-        IsPowered = true;
-       }
+        {
+            IsPowered = true;
+        }
 
 
         private void Off()
-       {
-        IsPowered = false;
-    }
+        {
+            IsPowered = false;
+        }
         private void MoveWest()
         {
             X--;
@@ -107,9 +107,9 @@ namespace Assignment
         }
 
         private void MoveNorth()
-       {
-        Y++;
-       }
+        {
+            Y++;
+        }
 
         /// <summary>
         /// Loads a command into the robot.

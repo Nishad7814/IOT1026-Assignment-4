@@ -1,69 +1,83 @@
-﻿// Change to 'using Assignment.InterfaceCommand' when you are ready to test your interface implementation
-using Assignment.InterfaceCommand;
+﻿using System;
 
-namespace Assignment;
-
-public class Robot
+namespace Assignment
 {
-    // These are properties, you can replace these with traditional getters/setters if you prefer.
-    public int NumCommands { get; }
-
-    // These properties are not good! The setter allows
-    // us to move the robot even if it off
-    public int X { get; set; }
-    public int Y { get; set; }
-    public bool IsPowered { get; set; }
-
-    private const int DefaultCommands = 6;
-    // An array is not the preferred data structure here.
-    // You will get bonus marks if you replace the array with the preferred data structure
-    // Hint: It is NOT a list either,
-    private readonly RobotCommand[] _commands;
-    private int _commandsLoaded = 0;
-
-    public override string ToString()
-    {
-        return $"[{X} {Y} {IsPowered}]";
-    }
-
-    // You should not have to use any of the methods below here but you should
-    // provide XML documentation for the argumented constructor, the Run method and one
-    // of the LoadCommand methods.
-    public Robot() : this(DefaultCommands) { }
-
     /// <summary>
-    /// Constructor that initializes the robot with the capacity to store a user specified
-    /// number of commands
+    /// Represents a robot that can execute commands.
     /// </summary>
-    /// <param name="numCommands">The maximum number of commands the robot can store</param>
-    public Robot(int numCommands)
+    public class Robot
     {
-        _commands = new RobotCommand[numCommands];
-        NumCommands = numCommands;
-    }
+        /// <summary>
+        /// Gets the maximum number of commands the robot can store.
+        /// </summary>
+        public int NumCommands { get; }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public void Run()
-    {
-        for (var i = 0; i < _commandsLoaded; ++i)
+        /// <summary>
+        /// Gets or sets the X coordinate of the robot's position.
+        /// </summary>
+        public int X { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Y coordinate of the robot's position.
+        /// </summary>
+        public int Y { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the robot is powered on or off.
+        /// </summary>
+        public bool IsPowered { get; set; }
+
+        private readonly IRobotCommand[] _commands;
+        private int _commandsLoaded = 0;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Robot"/> class with the default number of commands (6).
+        /// </summary>
+        public Robot() : this(6) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Robot"/> class with the specified number of commands.
+        /// </summary>
+        /// <param name="numCommands">The maximum number of commands the robot can store.</param>
+        public Robot(int numCommands)
         {
-            _commands[i].Run(this);
-            Console.WriteLine(this);
+            _commands = new IRobotCommand[numCommands];
+            NumCommands = numCommands;
         }
-    }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="command"></param>
-    /// <returns></returns>
-    public bool LoadCommand(RobotCommand command)
-    {
-        if (_commandsLoaded >= NumCommands)
-            return false;
-        _commands[_commandsLoaded++] = command;
-        return true;
+        /// <summary>
+        /// Runs the loaded commands on the robot, displaying the robot's state after each command execution.
+        /// </summary>
+        public void Run()
+        {
+            for (var i = 0; i < _commandsLoaded; ++i)
+            {
+                _commands[i].Execute(this);
+                Console.WriteLine(this);
+            }
+        }
+
+        /// <summary>
+        /// Loads a command into the robot.
+        /// </summary>
+        /// <param name="command">The command to load.</param>
+        /// <returns>Returns true if the command was successfully loaded, false otherwise.</returns>
+        public bool LoadCommand(IRobotCommand command)
+        {
+            if (_commandsLoaded >= NumCommands)
+                return false;
+
+            _commands[_commandsLoaded++] = command;
+            return true;
+        }
+
+        /// <summary>
+        /// Returns a string representation of the robot's state.
+        /// </summary>
+        /// <returns>A string representation of the robot's state.</returns>
+        public override string ToString()
+        {
+            return $"[{X} {Y} {IsPowered}]";
+        }
     }
 }

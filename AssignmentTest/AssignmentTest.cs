@@ -1,33 +1,101 @@
 ﻿using Assignment;
-using Assignment.AbstractCommand; // Change to Assignment.InterfaceCommand when rdy
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AssignmentTest
 {
     [TestClass]
-    public class AssignmentTests
+    public class RobotTests
     {
         [TestMethod]
-        public void PropertiesTest()
+        public void DefaultRobot_NumCommands_InitializedTo6()
         {
-            Robot robot1 = new();
-            Assert.AreEqual(robot1.NumCommands, 6);
+            // Arrange
+            Robot robot = new Robot();
+
+            // Act
+            int numCommands = robot.NumCommands;
+
+            // Assert
+            Assert.AreEqual(6, numCommands);
+        }
+
+        [TestMethod]
+        public void CustomRobot_NumCommands_InitializedToSpecifiedValue()
+        {
+            // Arrange
             const int ExpectedCommands = 10;
-            Robot robot2 = new(ExpectedCommands);
-            Assert.AreEqual(robot2.NumCommands, ExpectedCommands);
+            Robot robot = new Robot(ExpectedCommands);
 
-            Assert.AreEqual(robot1.IsPowered, false);
-            robot1.IsPowered = true;
-            Assert.AreEqual(robot1.IsPowered, true);
+            // Act
+            int numCommands = robot.NumCommands;
 
-            Assert.AreEqual(robot1.X, 0);
-            // Moves the robot can move even though it is off!!
-            // This is very bad! Not good encapsulation
-            robot1.X = -5;
-            Assert.AreEqual(robot1.X, -5);
+            // Assert
+            Assert.AreEqual(ExpectedCommands, numCommands);
+        }
 
-            Assert.AreEqual(robot1.Y, 0);
-            robot1.Y = -5;
-            Assert.AreEqual(robot1.Y, -5);
+        [TestMethod]
+        public void Robot_IsPowered_DefaultValue_IsFalse()
+        {
+            // Arrange
+            Robot robot = new Robot();
+
+            // Act
+            bool isPowered = robot.IsPowered;
+
+            // Assert
+            Assert.IsFalse(isPowered);
+        }
+
+        [TestMethod]
+        public void Robot_X_DefaultValue_IsZero()
+        {
+            // Arrange
+            Robot robot = new Robot();
+
+            // Act
+            int x = robot.X;
+
+            // Assert
+            Assert.AreEqual(0, x);
+        }
+
+        [TestMethod]
+        public void Robot_Y_DefaultValue_IsZero()
+        {
+            // Arrange
+            Robot robot = new Robot();
+
+            // Act
+            int y = robot.Y;
+
+            // Assert
+            Assert.AreEqual(0, y);
+        }
+
+        [TestMethod]
+        public void Robot_SetX_UpdatesXValue()
+        {
+            // Arrange
+            Robot robot = new Robot();
+
+            // Act
+            robot.X = -5;
+
+            // Assert
+            Assert.AreEqual(-5, robot.X);
+        }
+
+        [TestMethod]
+        public void Robot_SetY_UpdatesYValue()
+        {
+            // Arrange
+            Robot robot = new Robot();
+
+            // Act
+            robot.Y = -5;
+
+            // Assert
+            Assert.AreEqual(-5, robot.Y);
         }
     }
 }

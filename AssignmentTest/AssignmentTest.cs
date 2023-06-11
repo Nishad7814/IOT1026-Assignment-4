@@ -10,7 +10,7 @@ namespace AssignmentTest
         public void DefaultRobot_NumCommands_InitializedTo6()
         {
             // Arrange
-            Robot robot = new Robot();
+            Robot robot = new();
 
             // Act
             int numCommands = robot.NumCommands;
@@ -24,7 +24,7 @@ namespace AssignmentTest
         {
             // Arrange
             const int ExpectedCommands = 10;
-            Robot robot = new Robot(ExpectedCommands);
+            Robot robot = new(ExpectedCommands);
 
             // Act
             int numCommands = robot.NumCommands;
@@ -37,7 +37,7 @@ namespace AssignmentTest
         public void Robot_IsPowered_DefaultValue_IsFalse()
         {
             // Arrange
-            Robot robot = new Robot();
+            Robot robot = new();
 
             // Act
             bool isPowered = robot.IsPowered;
@@ -50,7 +50,7 @@ namespace AssignmentTest
         public void Robot_X_DefaultValue_IsZero()
         {
             // Arrange
-            Robot robot = new Robot();
+            Robot robot = new();
 
             // Act
             int x = robot.X;
@@ -63,7 +63,7 @@ namespace AssignmentTest
         public void Robot_Y_DefaultValue_IsZero()
         {
             // Arrange
-            Robot robot = new Robot();
+            Robot robot = new();
 
             // Act
             int y = robot.Y;
@@ -73,26 +73,28 @@ namespace AssignmentTest
         }
 
         [TestMethod]
-        public void Robot_SetX_UpdatesXValue()
+        public void Robot_SetX_UpdateXValue()
         {
             // Arrange
-            Robot robot = new Robot();
-
-            // Act
-            robot.X = -5;
+            Robot robot = new()
+            {
+                // Act
+                X = -5
+            };
 
             // Assert
             Assert.AreEqual(-5, robot.X);
         }
 
         [TestMethod]
-        public void Robot_SetY_UpdatesYValue()
+        public void Robot_SetY_UpdateYValue()
         {
             // Arrange
-            Robot robot = new Robot();
-
-            // Act
-            robot.Y = -5;
+            Robot robot = new()
+            {
+                // Act
+                Y = -5
+            };
 
             // Assert
             Assert.AreEqual(-5, robot.Y);
